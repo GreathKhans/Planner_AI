@@ -15,7 +15,7 @@ The input is processed by a task extraction component that detects actionable it
 ## Use-case 1. – Submit Daily Note
 The user enters daily notes through the web interface and submits them to the system. The web interface forwards the input to the backend API, where basic validation is performed. After successful validation, the notes are accepted for further processing and the user receives a confirmation.
 
-![Use-case 1.](docs/SeQUC1.png)
+![Use-case 1.](docs/SeqUC1.png)
 
 #### plantuml code for revision
 
@@ -36,7 +36,7 @@ UI --> User : Confirmation
 
 The backend API forwards the submitted notes to the task extraction service. This service uses a language model to identify actionable tasks within the text. The extracted tasks are then normalized into a structured format before being returned to the backend for further processing.
 
-![Use-case 2.](docs/SeQUC2.png)
+![Use-case 2.](docs/SeqUC2.png)
 
 #### plantuml code for revision
 
@@ -57,7 +57,7 @@ Extractor --> API : Extracted tasks
 
 The backend requests task classification and prioritization from the classification service. User preferences are loaded to provide additional context. A language model is used to assist with task categorization and priority assignment, after which the enriched task data is returned to the backend.
 
-![Use-case 3.](docs/SeQUC3.png)
+![Use-case 3.](docs/SeqUC3.png)
 
 #### plantuml code for revision
 
@@ -80,7 +80,7 @@ Classifier --> API : Tasks with priority
 
 The backend invokes the scheduling service to assign tasks to calendar time slots. The scheduler loads predefined user routines and retrieves existing calendar events. Based on this information, it computes a feasible schedule that respects availability constraints and avoids conflicts, and returns the scheduled tasks.
 
-![Use-case 4.](docs/SeQUC4.png)
+![Use-case 4.](docs/SeqUC4.png)
 
 #### plantuml code for revision
 
@@ -104,7 +104,7 @@ Scheduler --> API : Scheduled tasks
 
 The backend initiates synchronization of scheduled tasks through the calendar integration service. The integration service communicates with an external calendar API to create or update calendar events. After synchronization is completed, the result is reported back to the backend.
 
-![Use-case 5.](docs/SeQUC5.png)
+![Use-case 5.](docs/SeqUC5.png)
 
 #### plantuml code for revision
 
@@ -159,7 +159,7 @@ Third-party calendar service (e.g., Google Calendar).
 
 The Web UI serves as the entry point for user input and communicates exclusively with the Backend API. The Backend API acts as the central coordination component and delegates specific responsibilities to specialized services. Task extraction and classification services use a shared LLM engine for natural language processing, while scheduling logic is handled deterministically by the scheduling service. External calendar systems are accessed exclusively through a dedicated integration component, ensuring clear separation of concerns.
 
-![Class Diagram](docs/ClassDiag01.png)
+![Class Diagram](docs/ClassDiag.png)
 
 #### plantuml code for revision
 
@@ -194,7 +194,7 @@ The Planner_AI system is deployed as a set of containerized services running ins
 
 AI-related functionality is deployed as dedicated services that communicate with an external LLM API. Scheduling and integration logic are isolated in their own pods to maintain separation of concerns. User preferences and routines are stored in persistent storage within the cluster. External calendar systems are accessed through a dedicated integration service.
 
-![Class Diagram](docs/DepDiag01.png)
+![Class Diagram](docs/DeploymentDiag.png)
 
 #### plantuml code for revision
 
